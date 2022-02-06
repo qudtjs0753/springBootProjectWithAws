@@ -9,8 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  */
 
 
-//이거 있어야 Auditing Annotation 활성화된다.!!!
-@EnableJpaAuditing
 
 //이 어노테이션으로 인해 스프링부트의 자동설정, 스피링 빈 읽기와
 //생성을 모두 자동으로 설정함.
