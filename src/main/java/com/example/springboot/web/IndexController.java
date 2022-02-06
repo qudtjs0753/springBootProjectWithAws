@@ -1,5 +1,6 @@
 package com.example.springboot.web;
 
+import com.example.springboot.config.auth.LoginUser;
 import com.example.springboot.config.auth.dto.SessionUser;
 import com.example.springboot.service.PostsService;
 import com.example.springboot.web.dto.PostsResponseDto;
@@ -9,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpSession;
-
 /**
  * @Author: kbs
  */
@@ -19,11 +18,11 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
+
+    //어느 컨트롤러든 @LoginUser만 사용하면 세션 정보를 얻을 수 있게 됨.
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user!=null){
             model.addAttribute("userName", user.getName());
         }
