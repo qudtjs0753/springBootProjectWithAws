@@ -15,11 +15,6 @@ script: "./gradlew clean build"
 
 before_install:
   - chmod +x gradlew
-# CI 실행 완료 시 메일로 알람
-notifications:
-  email:
-    recipients:
-      - 본인 메일 주소
 
 before_deploy:
   - zip -r springboot-webservice *
@@ -45,7 +40,6 @@ deploy:
 
     bucket: springboot-travis-build
     key: springboot-webservice.zip # 빌드파일을 압축해서 전달
-
     bundle_type: zip #압축 확장자
     application: springboot-webservice #웹 콘솔에서 등록한 CodeDeploy 애플리케이션
 
@@ -53,5 +47,11 @@ deploy:
 
     region: ap-northeast-2
     wait-until-deployed: true
-    on:
-      branch: main
+
+# CI 실행 완료 시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - 본인 메일 주소
+
+
