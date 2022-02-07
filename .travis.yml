@@ -36,7 +36,7 @@ deploy:
     acl: private #zip 파일 접근을 private로
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
-
+    on: all_branches
 #  - provider: codedeploy
 #    access_key_id: $AWS_ACCESS_KEY
 #    secret_access_key: $AWS_SECRET_KEY
